@@ -6,7 +6,7 @@ module.exports.getDocente = async (req, res) => {
     .populate("curso")
     .then((allDocente) => res.json({ allDocente }))
     .catch((err) =>
-      res.status(400).json({ message: "Error finding docente", err })
+      res.status(400).json({ message: "Error al buscar docentes", err })
     );
 };
 
