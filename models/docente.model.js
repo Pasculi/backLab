@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+var uniqueValidator = require("mongoose-unique-validator");
 
 const DocenteSchema = new mongoose.Schema(
   {
@@ -11,7 +11,7 @@ const DocenteSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Ingrese el apellido del Docente']
     },
-    email: {
+    emailDocente: {
       type: String,
       required: [true, 'Ingrese el email del Docente'],
       unique: [true,  'El email ya existe']
@@ -26,4 +26,5 @@ const DocenteSchema = new mongoose.Schema(
   },{timestamps:true}
 )
 const Docente = mongoose.model("Docente", DocenteSchema);
+DocenteSchema.plugin(uniqueValidator);
 module.exports = Docente;

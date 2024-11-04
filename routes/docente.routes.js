@@ -5,4 +5,5 @@ const router = express.Router();
 router.get('/docente', Docente.getDocente)
 router.post("/docente", Docente.createDocente);
 
+
 module.exports = router;

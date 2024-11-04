@@ -1,15 +1,27 @@
-const Curso = require('../models/cursos.model');
-
-
+const Curso = require("../models/cursos.model");
 
 module.exports.getCurso = (req, res) => {
   Curso.find()
-    .then((curso) =>  res.json({curso}))
+    .then((curso) => res.json(curso))
     .catch((err) => res.status(400).json("Error: ", err));
 };
 
+
+
+// Ejemplo de función de controlador
 module.exports.createCurso = (req, res) => {
+  /* const { curso, matricula } = req.body; */
   Curso.create(req.body)
-    .then((curso) => res.json(curso))
-    .catch((err) => res.status(400).json("Error: ", err));
+    .then((newCurso) => {
+      res.status(201).json({
+        message: "Curso creado exitosamente",
+        data: newCurso,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Error al crear el curso",
+        error: error.message,
+      });
+    });
 };

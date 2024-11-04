@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require("mongoose-unique-validator");
 
 const CursoSchema = new mongoose.Schema({
   nombreCurso: {
     type: String,
-    required: [true, ' Ingrese un nombre de curso']
+    required: [true, ' Ingrese un nombre de curso'],
+    unique: true
   },
   matricula: {
     type: Number,
@@ -14,4 +16,5 @@ const CursoSchema = new mongoose.Schema({
 
 
 const Curso = mongoose.model('Curso', CursoSchema);
+CursoSchema.plugin(uniqueValidator, "El curso ya existe!");
 module.exports = Curso;
