@@ -10,12 +10,12 @@ module.exports.getCurso = (req, res) => {
 
 // Ejemplo de función de controlador
 module.exports.createCurso = (req, res) => {
-  /* const { curso, matricula } = req.body; */
+  console.log(req.body);
   Curso.create(req.body)
     .then((newCurso) => {
       res.status(201).json({
         message: "Curso creado exitosamente",
-        data: newCurso,
+        newCurso,
       });
     })
     .catch((error) => {
