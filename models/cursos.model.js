@@ -15,6 +15,6 @@ const CursoSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 
+CursoSchema.plugin(uniqueValidator, { message: `{VALUE} ya existe!` });
 const Curso = mongoose.model('Curso', CursoSchema);
-CursoSchema.plugin(uniqueValidator, "El curso ya existe!");
 module.exports = Curso;

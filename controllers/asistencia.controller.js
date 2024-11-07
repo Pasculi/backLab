@@ -8,13 +8,14 @@ module.exports.findAttendance = async (req, res) => {
      res.json({allAttendance})
     
   } catch (err) {
-    res.status(400).json("Error: " + err);
+    res.status(400).json("Error: " + console.log(err));
   }
 }
 
 /**Con promesas */
-module.exports.createAttendance = (req, res) => {
+module.exports.createAttendance = async (req, res) => {
   Attendance.create(req.body)
     .then((newAttendance) => res.json({ asistencia: newAttendance }))
-    .catch((err) => res.status(400).json({message: "Algo ocurrio!!", error: err}));
-};
+    .catch((err) => res.status(400).json("Error: " + console.log(err)));
+}
+  

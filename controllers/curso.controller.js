@@ -19,9 +19,9 @@ module.exports.createCurso = (req, res) => {
       });
     })
     .catch((error) => {
+      console.log(error)
       res.status(500).json({
-        message: "Error al crear el curso",
-        error: error.message,
+        error
       });
     });
 };
