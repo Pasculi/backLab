@@ -27,5 +27,5 @@ const DocenteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 const Docente = mongoose.model("Docente", DocenteSchema);
-DocenteSchema.plugin(uniqueValidator, "El mail ya existe!");
+DocenteSchema.plugin(uniqueValidator, { message: `El email {VALUE} ya existe!!` });
 module.exports = Docente;

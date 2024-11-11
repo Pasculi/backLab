@@ -24,6 +24,12 @@ app.use(cors({origin: '*'}));
 
 app.use("/api/v1", Ruta, Curso, Docente, Tool, Objetivo);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`);
-});
+try {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port http://localhost:${PORT}`);
+  });
+  
+} catch (error) {
+  
+  console.error(error);
+}

@@ -36,6 +36,27 @@ module.exports.createDocente = (req, res) => {
     .catch((error) => {
       res
         .status(400)
-        .json({ message: "Error al crear el docente", error: error })
+        .json({error })
     });
+};
+
+module.exports.updateDocente = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { curso } = req.body;
+
+    const updatedDocente = await Docente.findByIdAndUpdate(
+      id,
+      { $push: { curso: curso } },
+      { new: true }
+    ).populate("curso");
+
+    if (!updatedDocente) {
+      return res.status(404).json({ message: "Docente no encontrado" });
+    }
+
+    res.json({ updatedDocente });
+  } catch (err) {
+    res.status(400).json({ message: "Error al actualizar docente", err });
+  }
 };
