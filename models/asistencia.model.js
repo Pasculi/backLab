@@ -1,9 +1,15 @@
 const mongoose = require('mongoose')
 
+function getCurrentDate() {
+  return new Date();
+
+}
+
 const AttendanceSchema = new mongoose.Schema(
   {
     docenteAula: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Docente',
       required: true,
     },
     cursoNivel: {
@@ -12,7 +18,7 @@ const AttendanceSchema = new mongoose.Schema(
     },
     fecha: {
       type: Date,
-      default: new Date(),
+      default: getCurrentDate,
     },
     asistencia: {
       type: Number,
