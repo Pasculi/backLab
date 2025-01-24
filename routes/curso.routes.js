@@ -4,7 +4,9 @@ const router = express.Router();
 
 
 router.get("/curso", Curso.getCurso);
-router.post('/curso', Curso.createCurso)
+router.get('/curso/:id', Curso.getIdCurso);
+router.post('/curso', Curso.createCurso);
+router.patch('/curso/:id', Curso.updateCurso);
 
 
 module.exports = router;

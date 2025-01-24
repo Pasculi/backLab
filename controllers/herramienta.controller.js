@@ -1,3 +1,50 @@
+<<<<<<< HEAD
+const Tools = require('../models/herramientas.model')
+
+
+module.exports.getTools = async (req, res) => {
+    await Tools.find().populate('objetivo')
+        .then((tools) => res.json({ tools }))
+        .catch((err) => res.status(404).json("Error: ", err));
+};
+
+module.exports.createTool = async (req, res) => {
+    Tools.create(req.body)
+    .then((tools) => res.json({ tools }))
+    .catch((err) => res.status(404).json("Error: ", err));    
+}
+
+module.exports.updateTool = async (req, res, next) => {
+    try {
+        const tools = await Tools.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.json({ tools });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.deleteTool = async (req, res, next) => {
+    try {
+        const tools = await Tools.findByIdAndDelete(req.params.id);
+        if(!tools) return res.status(404).json({message: "Herramienta no encontrada"});
+        res.json({ message: "Herramienta eliminada" });
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports.getToolById = async (req, res) => {
+    try {
+        const tools = await Tools.findById(req.params.id);
+        if(!tools) return res.status(404).json({message: "Herramienta no encontrada"});
+        res.json(tools);
+    } catch (error) {
+        next(error);
+    }
+}
+
+    
+=======
 const Tool = require('../models/herramientas.model')
 
 
@@ -26,3 +73,4 @@ module.exports.createTool = (req, res) => {
       res.status(400).json({ message: "Algo ocurrio!!", error: err })
     );
 };
+>>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3

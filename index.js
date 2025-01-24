@@ -3,8 +3,13 @@ const app = express();
 const Ruta = require("./routes/attendance.routes");
 const Curso = require('./routes/curso.routes');
 const Docente = require("./routes/docente.routes");
+<<<<<<< HEAD
+const Objetivo = require("./routes/objetivo.routes");
+const Herramienta = require('./routes/herramienta.routes');
+=======
 const Tool = require("./routes/herramienta.routes");
 const Objetivo = require("./routes/objetivo.routes");
+>>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3
 require('dotenv').config()
 const path = require("path");
 const morgan = require('morgan')
@@ -29,7 +34,32 @@ try {
     console.log(`Server is running on port http://localhost:${PORT}`);
   });
   
+<<<<<<< HEAD
+];
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Obtener el origen de la solicitud
+  const { method } = req; // Obtener el método HTTP de la solicitud
+  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  if (method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+    const requestHeaders = req.headers["access-control-request-headers"];
+    res.header("Access-Control-Allow-Headers", requestHeaders);
+    return res.end();
+  }
+  next();
+});
+
+app.use("/api/v1", Ruta, Curso, Docente, Objetivo, Herramienta);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port http://localhost:${PORT}`);
+});
+=======
 } catch (error) {
   
   console.error(error);
 }
+>>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3

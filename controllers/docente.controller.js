@@ -20,7 +20,11 @@ module.exports.getDocentes = async (req, res) => {
     .populate("curso")
     .then((allDocente) => res.json({ allDocente }))
     .catch((err) =>
+<<<<<<< HEAD
+      res.status(400).json({ message: "Error busqueda docente", err })
+=======
       res.status(400).json({ message: "Error al buscar docentes", err })
+>>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3
     );
 };
 

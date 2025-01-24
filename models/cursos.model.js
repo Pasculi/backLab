@@ -7,7 +7,11 @@ const CursoSchema = new mongoose.Schema({
     required: [true, ' Ingrese un nombre de curso'],
     unique: true
   },
-  matricula: {
+  nombreCursoFull: {
+    type: String,
+    required: [true, ' Ingrese un nombre de curso']
+  },
+  matriculaCurso: {
     type: Number,
     required: [true, 'Ingrese la matricula del alumno']
   },
