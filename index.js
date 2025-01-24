@@ -3,6 +3,8 @@ const app = express();
 const Ruta = require("./routes/attendance.routes");
 const Curso = require('./routes/curso.routes');
 const Docente = require("./routes/docente.routes");
+const Objetivo = require("./routes/objetivo.routes");
+const Herramienta = require('./routes/herramienta.routes');
 require('dotenv').config()
 const path = require("path");
 const morgan = require('morgan')
@@ -39,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/v1", Ruta, Curso, Docente);
+app.use("/api/v1", Ruta, Curso, Docente, Objetivo, Herramienta);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
