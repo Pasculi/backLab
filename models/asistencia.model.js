@@ -1,23 +1,41 @@
-const { SchemaTypes } = require('mongoose');
 const mongoose = require('mongoose')
+
+function getCurrentDate() {
+  return new Date();
+
+}
 
 const AttendanceSchema = new mongoose.Schema(
   {
-    nombreDocente: {
-      type: String,
-      required: [true, "El nombre del docente es requerido"],
-      minlength: [3, "El nombre del docente debe tener al menos 3 caracteres"],
-      maxlength: [
-        50,
-        "El nombre del docente no puede superar los 50 caracteres",
-      ],
+    docenteAula: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Docente',
+      required: true,
     },
-    curso: [
-      {
-        type: SchemaTypes.ObjectId,
-        ref: 'Curso'
-      }
-    ]
+    cursoNivel: {
+      type: String,
+      required: true,
+    },
+    fecha: {
+      type: Date,
+      default: getCurrentDate,
+    },
+    asistencia: {
+      type: Number,
+      required: true,
+    },
+    matricula: {
+      type: Number,
+      required: true,
+    },
+    herramienta: {
+      type: String,
+      required: true,
+    },
+    objetivo: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

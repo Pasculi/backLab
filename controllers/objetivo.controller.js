@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Objetivo = require('../models/objetivos.model');
 
 module.exports.getObjetivos = async (req, res, next) => {
@@ -38,3 +39,20 @@ module.exports.getIdObjetivo = async (req, res, next) => {
         })
         .catch((err) => res.status(404).json("Error: ", err));
 };
+=======
+const Objetivo = require("../models/objetivos.model");
+
+module.exports.getObjetivo = async (req, res) => {
+  await Objetivo.find()
+    .then((objetivo) => res.json({ objetivo }))
+    .catch((err) => res.status(400).json("Error al buscar herramienta:" + err));
+};
+
+module.exports.createObjetivo = (req, res) => {
+  Objetivo.create(req.body)
+    .then((newObjetivo) => res.json({ objetivo: newObjetivo }))
+    .catch((err) =>
+      res.status(400).json({ message: "Algo ocurrio!!", error: err })
+    );
+};
+>>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3
