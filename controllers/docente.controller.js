@@ -1,30 +1,23 @@
 const Docente = require('../models/docente.model');
 
-
-
-
-
-module.exports.getDocente = async (req, res) => {
-  await Docente.findById(req.params.id)
-    .populate("curso")
-    .then((docente) => res.json({ docente }))
-    .catch((err) =>
-      res.status(400).json({ message: "Error al buscar docente", err })
-    );
+module.exports.getDocente = async (req, res, next) => {
+  try {
+    const docente = await Docente.findById(req.params.id).populate('curso')
+    if (!docente) {
+      return res.status(404).json({ message: "Docente no encontrado" });
+    }
+    res.json(docente);
+    } catch (error) {
+      next(error);
+    }
 }
 
-
-  
 module.exports.getDocentes = async (req, res) => {
   await Docente.find()
     .populate("curso")
     .then((allDocente) => res.json({ allDocente }))
     .catch((err) =>
-<<<<<<< HEAD
-      res.status(400).json({ message: "Error busqueda docente", err })
-=======
-      res.status(400).json({ message: "Error al buscar docentes", err })
->>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3
+      res.status(404).json({ message: "Error busqueda docente", err })
     );
 };
 

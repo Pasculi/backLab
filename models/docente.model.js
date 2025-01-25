@@ -16,6 +16,10 @@ const DocenteSchema = new mongoose.Schema(
       required: [true, "Ingrese el email del Docente"],
       unique: [true, "El email del docente ya existe!!!"]
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
     curso: [
       {
         type: mongoose.Schema.Types.ObjectId,

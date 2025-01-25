@@ -3,13 +3,8 @@ const app = express();
 const Ruta = require("./routes/attendance.routes");
 const Curso = require('./routes/curso.routes');
 const Docente = require("./routes/docente.routes");
-<<<<<<< HEAD
 const Objetivo = require("./routes/objetivo.routes");
 const Herramienta = require('./routes/herramienta.routes');
-=======
-const Tool = require("./routes/herramienta.routes");
-const Objetivo = require("./routes/objetivo.routes");
->>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3
 require('dotenv').config()
 const path = require("path");
 const morgan = require('morgan')
@@ -24,19 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 
 console.log(path.join(__dirname, 'public'))
 
-app.use(cors({origin: '*'}));
+app.use(cors());
 
 
-app.use("/api/v1", Ruta, Curso, Docente, Tool, Objetivo);
 
-try {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port http://localhost:${PORT}`);
-  });
-  
-<<<<<<< HEAD
-];
-app.use((req, res, next) => {
+
+/* app.use((req, res, next) => {
   const { origin } = req.headers; // Obtener el origen de la solicitud
   const { method } = req; // Obtener el método HTTP de la solicitud
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
@@ -50,16 +38,10 @@ app.use((req, res, next) => {
     return res.end();
   }
   next();
-});
+}); */
 
 app.use("/api/v1", Ruta, Curso, Docente, Objetivo, Herramienta);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
 });
-=======
-} catch (error) {
-  
-  console.error(error);
-}
->>>>>>> bc9ce59a6e9a1c84ab0055e9371916e1ed814af3
