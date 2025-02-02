@@ -1,11 +1,16 @@
 const Curso = require('../models/cursos.model');
 
 
-module.exports.getCurso = (req, res, netx) => {
+module.exports.getCurso =  (req, res) => {
   Curso.find()
-    .then((curso) =>  res.json({curso}))
+    .then((curso) => {
+      if (!curso) return res.status(404).json({ message: "Curso no encontrado" });
+      res.json(curso);
+    })
     .catch((err) => res.status(404).json("Error: ", err));
 };
+
+
 
 module.exports.getIdCurso = async(req, res, next) => {
   try {
